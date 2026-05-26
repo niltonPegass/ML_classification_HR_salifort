@@ -80,8 +80,8 @@ Certifique-se de possuir o Python 3.8+ instalado em sua máquina.
 
 ### 1. Clonar o repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd google_coursera_ml_class
+git clone https://github.com/niltonpegass/ML_classification_HR_salifort.git
+cd ML_classification_HR_salifort
 ```
 
 ### 2. Instalar as dependências
