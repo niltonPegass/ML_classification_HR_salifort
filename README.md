@@ -45,7 +45,7 @@ O projeto foi estruturado seguindo as melhores práticas de desenvolvimento de s
 google_coursera_ml_class/
 │
 ├── README.md                          # Documentação principal (este arquivo)
-├── HR Salifort Motors.ipynb           # Notebook com a descrição do desenvolvimento e com a documentação
+├── HR Salifort Motors.ipynb           # Notebook com o desenvolvimento e documentação
 ├── requirements.txt                   # Dependências e bibliotecas do projeto
 ├── .gitignore                         # Regras de arquivos ignorados no Git
 ├── CHANGELOG.md                       # Log detalhado das refatorações efetuadas
