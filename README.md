@@ -55,9 +55,6 @@ google_coursera_ml_class/
 │   └── processed/
 │       └── HR_Sailfort_dataset_Processed.xls  # Dataset tratado (formato CSV)
 │
-├── notebooks/
-│   └── HR_Salifort_Motors_Churn_Prediction.ipynb  # Notebook original do Kaggle
-│
 ├── src/                               # Módulos de código-fonte
 │   ├── __init__.py                    # Inicialização do pacote python
 │   ├── config.py                      # Constantes e caminhos de arquivos
