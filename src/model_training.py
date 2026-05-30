@@ -108,7 +108,7 @@ def train_and_optimize_models(X_train_scaled, y_train):
             )
             grid.fit(X_train_scaled, y_train)
             best_models[name] = grid.best_estimator_
-            print(f"{name} best parameters: {grid.best_params_}\n")
+            print(f"{name} best parameters: {grid.best_params_}")
         else:
             print(f"Training {name} (without tuning)")
             # Train model directly without tuning
