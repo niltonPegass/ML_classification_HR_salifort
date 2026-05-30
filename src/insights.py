@@ -64,10 +64,10 @@ def generate_df_result(best_model, X_test_scaled, X_test, y_test) -> pd.DataFram
     except Exception:
         pass
         
-    print("\nFirst 5 rows of result dataset:")
-    print(df_result.head().to_string())
-    print("\nSegment Summary:")
-    print(segment_summary.to_string())
+    # print("\nFirst 5 rows of result dataset:")
+    # print(df_result.head().to_string())
+    # print("\nSegment Summary:")
+    # print(segment_summary.to_string())
     
     return df_result
 
@@ -103,8 +103,10 @@ def plot_feature_importance_and_box(best_model, best_model_name: str, X_test, df
         data=top_features,
         x="gini_importance",
         y=top_features.index,
+        hue=top_features.index,
         orient='h',
         palette=sns.color_palette("Blues", n_colors=len(top_features))[::-1],
+        legend=False,
         ax=axes[0]
     )
     axes[0].set_title(f'Graph 11 - {best_model_name}: Feature Importances')
@@ -116,7 +118,9 @@ def plot_feature_importance_and_box(best_model, best_model_name: str, X_test, df
         data=df_plot,
         x='left',
         y=most_important_feature,
+        hue='left',
         palette='Set2',
+        legend=False,
         ax=axes[1]
     )
     axes[1].set_title(f'Graph 12 - Boxplot: {most_important_feature} by Employee Status (0 = Stayed, 1 = Left)')
@@ -128,8 +132,8 @@ def plot_feature_importance_and_box(best_model, best_model_name: str, X_test, df
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_11_12_feature_importance.png'), bbox_inches='tight', dpi=300)
         print("Saved: graph_11_12_feature_importance.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def plot_risk_segment_distribution(df_result: pd.DataFrame, save_dir: str = None) -> None:
     """
@@ -158,8 +162,10 @@ def plot_risk_segment_distribution(df_result: pd.DataFrame, save_dir: str = None
     sns.countplot(
         data=df_result,
         x='risk_segment',
+        hue='risk_segment',
         order=['low', 'medium', 'high'],
         palette='viridis',
+        legend=False,
         ax=axes[0]
     )
     axes[0].set_title('Graph 13 - Employees per Risk Segment')
@@ -183,8 +189,8 @@ def plot_risk_segment_distribution(df_result: pd.DataFrame, save_dir: str = None
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_13_14_risk_by_department.png'), bbox_inches='tight', dpi=300)
         print("Saved: graph_13_14_risk_by_department.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def print_department_top_list_details(df_result: pd.DataFrame) -> None:
     """
@@ -224,7 +230,7 @@ def print_department_top_list_details(df_result: pd.DataFrame) -> None:
         except Exception:
             pass
             
-        print(grouped.to_string())
+        # print(grouped.to_string())
 
 def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_graph_num: int, save_dir: str = None) -> None:
     """
@@ -311,5 +317,5 @@ def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_g
             filename = f'graph_{n-1}_{n}_dept_{department}.png'
             plt.savefig(os.path.join(save_dir, filename), bbox_inches='tight', dpi=300)
             print(f"Saved: {filename}")
-        plt.show()
-        plt.close()
+        # plt.show()
+        # plt.close()
