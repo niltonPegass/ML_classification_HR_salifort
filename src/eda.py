@@ -159,7 +159,7 @@ def run_eda(df: pd.DataFrame, save_dir: str = None) -> None:
     if save_dir is None:
         save_dir = config.OUTPUT_DIR
         
-    print("\nRunning Exploratory Data Analysis (EDA)...")
+    print("\nRunning Exploratory Data Analysis (EDA)")
     plot_correlation_heatmap(df, save_dir)
     plot_satisfaction_vs_evaluation(df, save_dir)
     plot_scatter_additional_vars(df, save_dir)

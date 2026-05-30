@@ -10,7 +10,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
-# import lightgbm as lgb  # Imported in original notebook but not used in model training
 
 from src import config
 
@@ -89,7 +88,7 @@ def train_and_optimize_models(X_train_scaled, y_train):
     """
     Orchestrates the model training and hyperparameter optimization via GridSearchCV.
     """
-    print("\nStarting model training and hyperparameter optimization...")
+    print("Starting model training and hyperparameter optimization")
     models, param_grids = get_models_and_grids(y_train)
     cv = StratifiedKFold(n_splits=config.CV_SPLITS, shuffle=True, random_state=config.RANDOM_STATE)
     
@@ -97,7 +96,7 @@ def train_and_optimize_models(X_train_scaled, y_train):
 
     for name, model in models.items():
         if name in param_grids:
-            print(f"Tuning and training {name}...")
+            print(f"Tuning and training {name}")
             # Perform grid search with cross-validation
             grid = GridSearchCV(
                 estimator=model,
@@ -111,12 +110,12 @@ def train_and_optimize_models(X_train_scaled, y_train):
             best_models[name] = grid.best_estimator_
             print(f"{name} best parameters: {grid.best_params_}\n")
         else:
-            print(f"Training {name} (without tuning)...")
+            print(f"Training {name} (without tuning)")
             # Train model directly without tuning
             model.fit(X_train_scaled, y_train)
             best_models[name] = model
 
-    print("Model training complete.\n")
+    print("Model training complete")
     return best_models
 
 def save_artifacts(best_models: dict, scaler: StandardScaler, save_dir: str = None) -> None:
@@ -140,4 +139,4 @@ def save_artifacts(best_models: dict, scaler: StandardScaler, save_dir: str = No
         model_path = os.path.join(save_dir, f'model_{model_name_clean}.pkl')
         with open(model_path, 'wb') as f:
             pickle.dump(model, f)
-        print(f"Saved model '{name}' to {model_path}")
+    print(f"Saved models to {save_dir}")
