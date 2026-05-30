@@ -21,8 +21,8 @@ def plot_correlation_heatmap(df: pd.DataFrame, save_dir: str = None) -> None:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_01_correlation_heatmap.png'), bbox_inches='tight', dpi=300)
         print(f"Saved: graph_01_correlation_heatmap.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def plot_satisfaction_vs_evaluation(df: pd.DataFrame, save_dir: str = None) -> None:
     """Plots satisfaction level distribution and scatter plot vs evaluation."""
@@ -74,8 +74,8 @@ def plot_satisfaction_vs_evaluation(df: pd.DataFrame, save_dir: str = None) -> N
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_02_03_satisfaction_evaluation.png'), bbox_inches='tight', dpi=300)
         print(f"Saved: graph_02_03_satisfaction_evaluation.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def plot_scatter_additional_vars(df: pd.DataFrame, save_dir: str = None) -> None:
     """Plots satisfaction vs evaluation colored by monthly hours and number of projects."""
@@ -110,8 +110,8 @@ def plot_scatter_additional_vars(df: pd.DataFrame, save_dir: str = None) -> None
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_04_05_satisfaction_evaluation_hours_projects.png'), bbox_inches='tight', dpi=300)
         print(f"Saved: graph_04_05_satisfaction_evaluation_hours_projects.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def plot_scatter_salary_tenure(df: pd.DataFrame, save_dir: str = None) -> None:
     """Plots satisfaction vs evaluation colored by salary and tenure."""
@@ -147,8 +147,8 @@ def plot_scatter_salary_tenure(df: pd.DataFrame, save_dir: str = None) -> None:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_06_07_satisfaction_evaluation_salary_tenure.png'), bbox_inches='tight', dpi=300)
         print(f"Saved: graph_06_07_satisfaction_evaluation_salary_tenure.png")
-    plt.show()
-    plt.close()
+    # plt.show()
+    # plt.close()
 
 def run_eda(df: pd.DataFrame, save_dir: str = None) -> None:
     """Runs all EDA visualizations."""
