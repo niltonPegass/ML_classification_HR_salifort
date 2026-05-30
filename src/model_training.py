@@ -54,7 +54,6 @@ def get_models_and_grids(y_train):
         ),
         'XGBoost': xgb.XGBClassifier(
             objective='binary:logistic',
-            use_label_encoder=False,
             eval_metric='logloss',
             scale_pos_weight=scale_pos_weight,
             random_state=config.RANDOM_STATE
