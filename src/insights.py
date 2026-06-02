@@ -23,7 +23,7 @@ def generate_df_result(best_model, X_test_scaled, X_test, y_test) -> pd.DataFram
     Predicts churn probabilities on the test set, adds risk segments,
     reconstructs department columns, and prints the summary by risk segment.
     """
-    print("\nReassembling test dataset with predicted churn probability and risk segments...")
+    print("Reassembling test dataset with predicted churn probability and risk segments [...]")
     
     # Get the churn probabilities from the best model's prediction
     churn_probabilities = best_model.predict_proba(X_test_scaled)[:, 1]
@@ -76,7 +76,7 @@ def plot_feature_importance_and_box(best_model, best_model_name: str, X_test, df
     Plots feature importances for the best model and a boxplot of the most important
     feature grouped by employee status.
     """
-    print("\nGenerating feature importance and box plots...")
+    # print("\nGenerating feature importance and box plots [...]")
     
     # Create a DataFrame for feature importances from the best model
     feature_importances = pd.DataFrame(
@@ -131,7 +131,7 @@ def plot_feature_importance_and_box(best_model, best_model_name: str, X_test, df
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_11_12_feature_importance.png'), bbox_inches='tight', dpi=300)
-        print("Saved: graph_11_12_feature_importance.png")
+        print(">> Saved: graph_11_12_feature_importance.png")
     # plt.show()
     # plt.close()
 
@@ -139,7 +139,7 @@ def plot_risk_segment_distribution(df_result: pd.DataFrame, save_dir: str = None
     """
     Plots employee distribution by risk segment and high-risk percentage by department.
     """
-    print("\nGenerating risk distribution charts...")
+    # print("Generating risk distribution charts [...]")
     
     # === Heatmap: percentage distribution of risk level by department ===
     heatmap_table = pd.crosstab(
@@ -188,7 +188,7 @@ def plot_risk_segment_distribution(df_result: pd.DataFrame, save_dir: str = None
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_13_14_risk_by_department.png'), bbox_inches='tight', dpi=300)
-        print("Saved: graph_13_14_risk_by_department.png")
+        print(">> Saved: graph_13_14_risk_by_department.png")
     # plt.show()
     # plt.close()
 
@@ -196,12 +196,12 @@ def print_department_top_list_details(df_result: pd.DataFrame) -> None:
     """
     Prints aggregated metrics grouped by project count and risk segment for key departments.
     """
-    print("\n--- Key Department Detailed Averages ---")
+    # print("\n>> Key Department Detailed Averages <<")
     department_top_list = ['hr', 'technical', 'management', 'RandD']
 
     # Iterate through the selected departments
     for dept in department_top_list:
-        print(f'\n>> Department: {dept}')
+        # print(f'\n>> Department: {dept}')
         
         # Filter data for the selected department and valid working hours
         filtered_df = df_result[
@@ -217,7 +217,7 @@ def print_department_top_list_details(df_result: pd.DataFrame) -> None:
         )
 
         # Group data by number of projects and risk segment, and calculate averages
-        grouped = filtered_df.groupby(['number_project', 'risk_segment'])[
+        grouped = filtered_df.groupby(['number_project', 'risk_segment'], observed=True)[
             ['average_montly_hours', 'satisfaction_level', 'last_evaluation', 'tenure', 'churn_probability']
         ].mean().dropna().sort_index(level='risk_segment')
 
@@ -239,7 +239,7 @@ def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_g
     """
     n = start_graph_num
     for department in departments:
-        print(f'\n>> Graph Department: {department}')
+        # print(f'\n>> Graph Department: {department}')
         
         # Filter the DataFrame for the selected department and valid working hours
         filtered_df = df_result[
@@ -257,14 +257,9 @@ def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_g
         # Group the data by number of projects and risk segment, then calculate the averages
         grouped_df = (
             filtered_df
-            .groupby(['number_project', 'risk_segment'])[
+            .groupby(['number_project', 'risk_segment'], observed=True)[
                 ['average_montly_hours', 'satisfaction_level', 'last_evaluation', 'tenure', 'churn_probability']
-            ]
-            .mean()
-            .dropna()
-            .sort_index(level='risk_segment')
-            .reset_index()
-        )
+            ].mean().dropna().sort_index(level='risk_segment').reset_index())
 
         # Create a combined column for X-axis representation
         grouped_df['project_risk'] = (
@@ -303,6 +298,7 @@ def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_g
             data=grouped_df,
             x='project_risk',
             y='average_montly_hours',
+            hue='project_risk',
             palette='Blues_d'
         )
         n += 1
@@ -316,6 +312,6 @@ def plot_department_analysis(df_result: pd.DataFrame, departments: list, start_g
             os.makedirs(save_dir, exist_ok=True)
             filename = f'graph_{n-1}_{n}_dept_{department}.png'
             plt.savefig(os.path.join(save_dir, filename), bbox_inches='tight', dpi=300)
-            print(f"Saved: {filename}")
+            print(f">> Saved: {filename}")
         # plt.show()
         # plt.close()
