@@ -13,7 +13,7 @@ def evaluate_models(best_models: dict, X_train_scaled, X_test_scaled, y_train, y
     Evaluates all trained models on both train and test data, printing their AUC scores,
     and returns the name and object of the best performing model.
     """
-    print("\n--- Model Evaluation Results ---")
+    # print(">> Model Evaluation Results <<")
     best_score = 0
     best_model_name = None
 
@@ -78,15 +78,15 @@ def plot_evaluation_charts(best_models: dict, best_model_name: str, X_test_scale
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_08_09_roc_confusion_matrix.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_08_09_roc_confusion_matrix.png")
-    plt.show()
-    plt.close()
+        print(f">> Saved: graph_08_09_roc_confusion_matrix.png")
+    # plt.show()
+    # plt.close()
 
 def plot_learning_curves(best_model, best_model_name: str, X_train_scaled, y_train, save_dir: str = None) -> None:
     """
     Plots learning curves for the best model to analyze over/underfitting.
     """
-    print(f"Generating learning curve for {best_model_name}...")
+    # print(f"Generating learning curve for {best_model_name} [...]")
     cv = StratifiedKFold(n_splits=config.CV_SPLITS, shuffle=True, random_state=config.RANDOM_STATE)
     
     # Plot learning curves to analyze overfitting or underfitting
@@ -105,7 +105,7 @@ def plot_learning_curves(best_model, best_model_name: str, X_train_scaled, y_tra
     val_mean = val_scores.mean(axis=1)
 
     # Plot learning curves
-    plt.figure(figsize=(15, 4))
+    plt.figure(figsize=(16, 6))
     plt.plot(train_sizes, train_mean, label="Training AUC")
     plt.plot(train_sizes, val_mean, label="Validation AUC")
     plt.xlabel("Training Set Size")
@@ -117,6 +117,6 @@ def plot_learning_curves(best_model, best_model_name: str, X_train_scaled, y_tra
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_10_learning_curve.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_10_learning_curve.png")
-    plt.show()
-    plt.close()
+        print(f">> Saved: graph_10_learning_curve.png")
+    # plt.show()
+    # plt.close()
