@@ -20,7 +20,7 @@ def plot_correlation_heatmap(df: pd.DataFrame, save_dir: str = None) -> None:
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_01_correlation_heatmap.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_01_correlation_heatmap.png")
+        print(f">> Saved: graph_01_correlation_heatmap.png")
         # print(f"Successfully saved: {save_dir}")
     # plt.show()
     # plt.close()
@@ -74,7 +74,7 @@ def plot_satisfaction_vs_evaluation(df: pd.DataFrame, save_dir: str = None) -> N
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_02_03_satisfaction_evaluation.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_02_03_satisfaction_evaluation.png")
+        print(f">> Saved: graph_02_03_satisfaction_evaluation.png")
         # print(f"Successfully saved: {save_dir}")
     # plt.show()
     # plt.close()
@@ -111,7 +111,7 @@ def plot_scatter_additional_vars(df: pd.DataFrame, save_dir: str = None) -> None
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_04_05_satisfaction_evaluation_hours_projects.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_04_05_satisfaction_evaluation_hours_projects.png")
+        print(f">> Saved: graph_04_05_satisfaction_evaluation_hours_projects.png")
         # print(f"Successfully saved: {save_dir}")
     # plt.show()
     # plt.close()
@@ -149,7 +149,7 @@ def plot_scatter_salary_tenure(df: pd.DataFrame, save_dir: str = None) -> None:
     if save_dir:
         os.makedirs(save_dir, exist_ok=True)
         plt.savefig(os.path.join(save_dir, 'graph_06_07_satisfaction_evaluation_salary_tenure.png'), bbox_inches='tight', dpi=300)
-        print(f"Saved: graph_06_07_satisfaction_evaluation_salary_tenure.png")
+        print(f">> Saved: graph_06_07_satisfaction_evaluation_salary_tenure.png")
         # print(f"Successfully saved: {save_dir}")
     # plt.show()
     # plt.close()
@@ -159,9 +159,9 @@ def run_eda(df: pd.DataFrame, save_dir: str = None) -> None:
     if save_dir is None:
         save_dir = config.OUTPUT_DIR
         
-    print("\nRunning Exploratory Data Analysis (EDA)")
+    # print("Running Exploratory Data Analysis (EDA)\n")
     plot_correlation_heatmap(df, save_dir)
     plot_satisfaction_vs_evaluation(df, save_dir)
     plot_scatter_additional_vars(df, save_dir)
     plot_scatter_salary_tenure(df, save_dir)
-    print("EDA Visualizations complete.\n")
+    print("\nEDA Visualizations complete")
