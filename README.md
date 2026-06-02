@@ -42,13 +42,12 @@ This repository contains the modularized version of the Machine Learning project
 O projeto foi estruturado seguindo as melhores práticas de desenvolvimento de software e ciência de dados para repositórios no GitHub:
 
 ```
-google_coursera_ml_class/
+ML_classification_HR_salifort/
 │
+├── salifort_motors_classification.ipynb   # Notebook com o desenvolvimento e documentação
 ├── README.md                              # Documentação principal (este arquivo)
-├── salifort_motors_classification.ipynb0  # Notebook com o desenvolvimento e documentação
 ├── requirements.txt                       # Dependências e bibliotecas do projeto
 ├── .gitignore                             # Regras de arquivos ignorados no Git
-├── CHANGELOG.md                           # Log detalhado das refatorações efetuadas
 ├── main.py                                # Script principal/orquestrador do pipeline
 │
 ├── data/
