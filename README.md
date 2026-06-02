@@ -44,12 +44,12 @@ O projeto foi estruturado seguindo as melhores práticas de desenvolvimento de s
 ```
 google_coursera_ml_class/
 │
-├── README.md                          # Documentação principal (este arquivo)
-├── HR Salifort Motors.ipynb           # Notebook com o desenvolvimento e documentação
-├── requirements.txt                   # Dependências e bibliotecas do projeto
-├── .gitignore                         # Regras de arquivos ignorados no Git
-├── CHANGELOG.md                       # Log detalhado das refatorações efetuadas
-├── main.py                            # Script principal/orquestrador do pipeline
+├── README.md                              # Documentação principal (este arquivo)
+├── salifort_motors_classification.ipynb0  # Notebook com o desenvolvimento e documentação
+├── requirements.txt                       # Dependências e bibliotecas do projeto
+├── .gitignore                             # Regras de arquivos ignorados no Git
+├── CHANGELOG.md                           # Log detalhado das refatorações efetuadas
+├── main.py                                # Script principal/orquestrador do pipeline
 │
 ├── data/
 │   └── processed/
