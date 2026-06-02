@@ -44,7 +44,7 @@ O projeto foi estruturado seguindo as melhores práticas de desenvolvimento de s
 ```
 ML_classification_HR_salifort/
 │
-├── salifort_motors_classification.ipynb   # Notebook com o desenvolvimento e documentação
+├── salifort_motors_classification.ipynb   # Notebook com o desenvolvimento, documentação e insights
 ├── README.md                              # Documentação principal (este arquivo)
 ├── requirements.txt                       # Dependências e bibliotecas do projeto
 ├── .gitignore                             # Regras de arquivos ignorados no Git
