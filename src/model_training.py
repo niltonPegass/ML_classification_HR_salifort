@@ -88,7 +88,7 @@ def train_and_optimize_models(X_train_scaled, y_train):
     """
     Orchestrates the model training and hyperparameter optimization via GridSearchCV.
     """
-    print("Starting model training and hyperparameter optimization")
+    print("Starting model training and hyperparameter optimization [...]\n")
     models, param_grids = get_models_and_grids(y_train)
     cv = StratifiedKFold(n_splits=config.CV_SPLITS, shuffle=True, random_state=config.RANDOM_STATE)
     
@@ -96,7 +96,7 @@ def train_and_optimize_models(X_train_scaled, y_train):
 
     for name, model in models.items():
         if name in param_grids:
-            print(f"Tuning and training {name}")
+            print(f">> Tuning and training {name}")
             # Perform grid search with cross-validation
             grid = GridSearchCV(
                 estimator=model,
@@ -108,14 +108,17 @@ def train_and_optimize_models(X_train_scaled, y_train):
             )
             grid.fit(X_train_scaled, y_train)
             best_models[name] = grid.best_estimator_
-            print(f"{name} best parameters: {grid.best_params_}")
+            # print(f"└─> best parameters: {grid.best_params_}")
+            print(f"└> {name} best parameters:")
+            for param, value in grid.best_params_.items():
+                print(f"    {param}: {value}")
         else:
-            print(f"Training {name} (without tuning)")
+            print(f">> Training {name}")
             # Train model directly without tuning
             model.fit(X_train_scaled, y_train)
             best_models[name] = model
 
-    print("Model training complete")
+    print("\nModel training complete")
     return best_models
 
 def save_artifacts(best_models: dict, scaler: StandardScaler, save_dir: str = None) -> None:
@@ -131,12 +134,12 @@ def save_artifacts(best_models: dict, scaler: StandardScaler, save_dir: str = No
     scaler_path = os.path.join(save_dir, 'scaler.pkl')
     with open(scaler_path, 'wb') as f:
         pickle.dump(scaler, f)
-    print(f"Saved scaler to {scaler_path}")
+    print(f">> Saved scaler: {scaler_path}")
     
-    # Save best models
+    # Save models
     for name, model in best_models.items():
         model_name_clean = name.lower().replace(" ", "_")
         model_path = os.path.join(save_dir, f'model_{model_name_clean}.pkl')
         with open(model_path, 'wb') as f:
             pickle.dump(model, f)
-    print(f"Saved models to {save_dir}")
+    print(f">> Saved models: {save_dir}")
