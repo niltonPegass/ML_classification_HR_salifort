@@ -87,6 +87,7 @@ def main():
 
     print("\n" + "=" * 80)
     print("PIPELINE COMPLETED SUCCESSFULLY!")
+    print(f'>> Model artifacts have been saved:\n{config.MODELS_DIR}')
     print(f">> All figures have been saved:\n{config.OUTPUT_DIR}")
     print("=" * 80)
 
