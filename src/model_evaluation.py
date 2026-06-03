@@ -35,7 +35,7 @@ def evaluate_models(best_models: dict, X_train_scaled, X_test_scaled, y_train, y
             best_score = auc_test
             best_model_name = name
 
-    print(f">> Best model: {best_model_name} with AUC = {best_score * 100:.4f}%\n")
+    print(f">> Best model: {best_model_name} with AUC = {best_score * 100:.4f}%")
     return best_model_name, best_models[best_model_name]
 
 def plot_evaluation_charts(best_models: dict, best_model_name: str, X_test_scaled, y_test, save_dir: str = None) -> None:
