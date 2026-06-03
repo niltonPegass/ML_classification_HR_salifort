@@ -13,7 +13,7 @@ def load_data(file_path: str = None) -> pd.DataFrame:
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"Dataset not found at: {file_path}")
         
-    print(f"Loading dataset from: {file_path}")
+    print(f">> Loading dataset from:\n>> {file_path}")
     return pd.read_csv(file_path)
 
 def display_dataset_overview(df: pd.DataFrame) -> None:
@@ -31,7 +31,7 @@ def display_dataset_overview(df: pd.DataFrame) -> None:
         'satisfaction_level':     "Employee-reported job satisfaction level",
         'last_evaluation':        "Score of employee's last performance review",
         'number_project':         "Number of projects employee contributes to",
-        'average_montly_hours':  "Average number of hours employee worked per month",
+        'average_montly_hours':   "Average number of hours employee worked per month",
         'tenure':                 "Years the employee has been with the company",
         'work_accident':          "Whether the employee experienced a work accident",
         'left':                   "Whether the employee left the company",
@@ -52,22 +52,22 @@ def display_dataset_overview(df: pd.DataFrame) -> None:
         if get_ipython is not None:
             from IPython.display import display
             display(variable_df)
-            print(">> General dataset information:")
-            df.info()
-            print(">> First 5 rows:")
-            display(df.head(5))
+            # print(">> General dataset information:")
+            # df.info()
+            # print(">> First 5 rows:")
+            # display(df.head(5))
             print(">> Descriptive statistics:")
-            display(df.describe())
+            display(df.describe().T)
             return
     except Exception:
         pass
 
     # Fallback to plain print in terminal
-    print(">> Variable Descriptions:")
+    # print(">> Variable Descriptions:")
     print(variable_df.to_string(index=False))
-    print("\n>> General dataset information:")
-    df.info()
-    print("\n>> First 5 rows:")
-    print(df.head(5).to_string())
+    # print("\n>> General dataset information:")
+    # df.info()
+    # print("\n>> First 5 rows:")
+    # print(df.head(5).to_string())
     print("\n>> Descriptive statistics:")
-    print(df.describe().to_string())
+    print(df.describe().T.to_string())
